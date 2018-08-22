@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   devise_for :user
 
   root to: "timeline#index"
-  get "timeline" => "timeline#index"
-  get "users" => "users#index"
-
+  get "timeline" => "timeline#index", as: :timeline
+  get "users" => "users#index", as: :users
+  get "users/:id" => "users#show", as: :user
 end
