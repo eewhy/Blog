@@ -1,7 +1,22 @@
-<%= image_tag "default_user.png", width: "150px" %>
-<br>
-<p>@<%= @user.username %></p>
-<p><%= @user.full_name %></p>
-<p><%= @user.city %>,<%= @user.state %></p>
-<br><br>
-<p><%= @user.bio %></p>
+<div class="row">
+    <div class="user_profile col-4">
+      <%= image_tag "default_user.png", width: "150px" %>
+      <br>
+      <p>@<%= user.username %></p>
+      <p><%= user.full_name %></p>
+      <p><%= user.city %>,<%= user.state %></p>
+      <br><br>
+      <p><%= user.bio %></p>
+    </div>
+    <div class="message_list col-8">
+      <% user.messages.each do |messages| %>
+        <div class="message">
+          <%= image_tag "default_user.png" %>
+          <p><%= messages.body %></p>
+          <div class="message-date">
+            <p><%= time_ago_in_words(messages.created_at) %></p>
+          </div>
+        </div>
+      <% end  %>
+    </div>
+</div>

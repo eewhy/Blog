@@ -5,8 +5,23 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-puts "It's generating my users"
 
+Message.destroy_all
+
+def create_messages(user)
+  puts "Creating Messages #{user.full_name}"
+  20.times {
+    putc "."
+    user.messages.create! ({
+      body: Faker::HowIMetYourMother.quote,
+      created_at: Faker::Date.between(2.weeks.ago, Time.now),
+      })
+      user.save
+  }
+  puts "done with messages"
+end
+
+puts "It's generating my users"
 u = User.find_or_create_by(username: "eewhyoh")
 u.update_attributes({
   first_name:   "EY",
@@ -21,16 +36,16 @@ u.update_attributes({
 })
 
 u.save!
+create_messages(u)
 
 puts "Deleting fake users\n"
 
 User.where(fake: true).destroy_all
 
 puts "Generating fake users"
-
 10.times do
   putc "."
-  User.create! ({
+  u = User.new ({
     username:     Faker::Internet.username,
     first_name:   Faker::Name.first_name,
     last_name:    Faker::Name.last_name,
@@ -42,6 +57,8 @@ puts "Generating fake users"
     password:     "asdfghjkl",
     password_confirmation: "asdfghjkl"
     })
+    u.save!
+    create_messages(u)
 end
 
 puts "done"

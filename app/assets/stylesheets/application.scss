@@ -1,1 +1,24 @@
 @import "bootstrap";
+
+.message{
+  border-style: solid;
+  border-width: 1px;
+  margin-bottom: 20px;
+  padding: 10px;
+}
+
+.message img {
+  width: 40px;
+  float: left;
+  margin-right: 5px;
+  border-style: solid;
+  border-width: thin;
+  border-radius: 25px;
+}
+
+.message-date{
+  color: #666666;
+  position: relative;
+  top: 10px;
+  left: 5px;
+}
