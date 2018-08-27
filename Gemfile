@@ -68,3 +68,7 @@ gem 'jquery-rails'
 gem 'faker'
 
 gem 'devise'
+
+gem 'figaro'
+
+gem 'aws-sdk-s3'

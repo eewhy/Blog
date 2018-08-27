@@ -33,6 +33,7 @@ u.update_attributes({
   email:        "eewhyoh@gmail.com",
   password: "asdfghjkl",
   password_confirmation: "asdfghjkl"
+  profile_image: ""
 })
 
 u.save!
@@ -56,6 +57,7 @@ puts "Generating fake users"
     email:        Faker::Internet.email,
     password:     "asdfghjkl",
     password_confirmation: "asdfghjkl"
+    profile_image: ""
     })
     u.save!
     create_messages(u)

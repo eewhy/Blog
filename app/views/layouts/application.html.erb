@@ -11,19 +11,24 @@
 
   <body>
 
-    <ul>
-      <li><%= link_to "Timeline", timeline_path %></li>
-      <li><%= link_to "Users", users_path %></li>
+    <ul class="navbar bg-dark">
+      <li class="nav-item"><%= link_to "Timeline", timeline_path, class: "nav-link text-light" %></li>
+      <li class="nav-item"><%= link_to "Users", users_path, class: "nav-link text-light"%></li>
       <% if current_user %>
-        <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+        <li class="nav-item"><%= link_to "Profile", edit_user_registration_path(id: current_user.id), class: "nav-link text-light" %></li>
+        <li class="nav-item"><%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "nav-link text-light" %></li>
       <% else %>
-        <li> <%= link_to "Sign In", new_user_session_path %> </li>
+        <li class="nav-item"> <%= link_to "Sign In", new_user_session_path, class: "nav-link text-light" %> </li>
       <% end %>
     </ul>
     <div class="container">
+      <% if notice %>
       <!-- devise (Authentification gem) -->
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
+        <p class="notice bg-success text-light"><%= notice %></p>
+      <% end  %>
+      <% if alert  %>
+        <p class="alert bg-danger text-light"><%= alert %></p>
+      <% end  %>
       <%= yield %>
     </div>
 
