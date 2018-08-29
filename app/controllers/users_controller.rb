@@ -10,4 +10,11 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def follow
+    current_user.following << params[:id].to_i
+    current_user.save
+    redirect_to user_path(id: params[:id])
+  end
+
+
 end

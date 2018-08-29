@@ -1,23 +1,30 @@
 <div class="row">
     <div class="user_profile col-4">
-    <%= render "share/avatar", user: user %>
+    <%= render "share/avatar", user: user, width: "100px" %>
       <br>
       <p>@<%= user.username %></p>
       <p><%= user.full_name %></p>
       <p><%= user.city %>,<%= user.state %></p>
       <br><br>
       <p><%= user.bio %></p>
+      <br>
+      <% unless current_user == user or current_user.following.include? (user.id) %>
+      <%= link_to "Follow", follow_user_path(user.id), class: "btn btn-primary" %>
+      <% end %>
     </div>
     <div class="message_list col-8">
+      
       <% if current_user == user %>
         <%= form_for message do |form| %>
           <%= form.text_area :body %>
-          <%= form.submit "Post it!", class: "btn btn-primary float-right" %>
+          <div class="submit">
+            <%= form.submit "Post it!", class: "btn btn-primary float-right" %>
+          </div>
         <% end  %>
       <% end %>
-      <% user.messages.each do |messages| %>
+      <% @messages.each do |messages| %>
         <div class="message">
-          <%= image_tag "default_user.png" %>
+          <%= render "share/avatar", user: messages.user, width: "100px" %>
           <p><%= messages.body %></p>
           <div class="message-date">
             <p><%= time_ago_in_words(messages.created_at) %></p>

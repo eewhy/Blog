@@ -10,4 +10,7 @@ class User < ApplicationRecord
   has_many :messages
   has_one_attached :avatar
 
+#want to take this field and saves it as array
+  serialize :following, Array
+
 end

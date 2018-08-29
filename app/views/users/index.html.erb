@@ -1,6 +1,6 @@
 <% @users.each do |user| %>
   <div class="user">
-    <%= render "share/avatar", user: user %>
+    <%= render "share/avatar", user: user, width: "100px" %>
     <p><%= link_to "@#{user.username}", user_path(id: user.id) %></p>
   </div>
 <% end %>
